@@ -1,0 +1,7 @@
+# EPIC Sampler
+
+The Sample Design Optimizer (SDO) instrument, designed by the EPIC project at the Harvard T.H. Chan School of Public Health, aims to assist research teams develop cost-effective and efficient hierarchical clustered sample designs. Research teams will be able to use prior information to maximize expected precision within a data collection budget constraint. The primary application of this instrument is to design nationally representative data collections for immunization costing studies that draw from a sample of health facilities, district health offices or other hierarchical jurisdiction levels within a country. 
+
+This instrument help teams visualize their sampling frame (the population of sites from which they could select a sample) and estimate the expected precision of results collected under different sample designs. While the SDO is not a replacement for the input of a statistician with expertise in sample design, it may help build intuition and lead to improved designs in situations where technical advice of a statistician is not available. 
+
+The SDO assumes that the user is conducting a study of an immunization program and that the outcome of interest is delivery cost. In theory, the instrument could be used in other contexts in which the outcome of interest is something else. But the user guide will assume the outcome of interest is immunization delivery cost.
