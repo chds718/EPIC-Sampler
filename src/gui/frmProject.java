@@ -174,9 +174,24 @@ public class frmProject{
 							curLevel.data=oldLevels[i].data;
 						}
 						curLevel.name=names.get(i);
-						curLevel.hasStrata=(boolean) tableLevels.getValueAt(i, 2);
-						curLevel.hasSize=(boolean) tableLevels.getValueAt(i, 3);
-						curLevel.hasCost=(boolean) tableLevels.getValueAt(i, 4);
+						if(tableLevels.getValueAt(i, 2)==null) {
+							curLevel.hasStrata=false;
+						}
+						else {
+							curLevel.hasStrata=(boolean) tableLevels.getValueAt(i, 2);
+						}
+						if(tableLevels.getValueAt(i, 3)==null) {
+							curLevel.hasSize=false;
+						}
+						else {
+							curLevel.hasSize=(boolean) tableLevels.getValueAt(i, 3);
+						}
+						if(tableLevels.getValueAt(i, 4)==null) {
+							curLevel.hasCost=false;
+						}
+						else {
+							curLevel.hasCost=(boolean) tableLevels.getValueAt(i, 4);
+						}
 						curLevel.updateColumns(curProject.sampleFrame,i);
 					}
 					

@@ -42,7 +42,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JToolBar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
-import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -86,6 +85,7 @@ public class frmFinalSample {
 	 */
 	private void initialize() {
 		frmFinalSample = new JDialog();
+		frmFinalSample.setIconImage(Toolkit.getDefaultToolkit().getImage(frmMain.class.getResource("/images/EPIC-Logo.png")));
 		frmFinalSample.setModalityType(ModalityType.APPLICATION_MODAL);
 		frmFinalSample.setTitle("EPIC Sampler - Final Sample");
 		frmFinalSample.setBounds(100, 100, 1203, 500);
@@ -141,7 +141,7 @@ public class frmFinalSample {
 				clip.setContents(new DataTransferable(data), null);
 			}
 		});
-		btnCopy.setIcon(new ImageIcon(frmMain.class.getResource("/images/copy_16.png")));
+		btnCopy.setIcon(new ScaledIcon("/images/copy",16,16,true));
 		toolBar.add(btnCopy);
 
 		JButton btnExport = new JButton("Export");
@@ -195,7 +195,7 @@ public class frmFinalSample {
 				
 			}
 		});
-		btnExport.setIcon(new ImageIcon(frmMain.class.getResource("/images/export.png")));
+		btnExport.setIcon(new ScaledIcon("/images/export",16,16,true));
 		toolBar.add(btnExport);
 
 		JLabel lblGnuGeneralPublic = new JLabel("GNU General Public License:");

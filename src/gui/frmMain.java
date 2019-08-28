@@ -140,7 +140,7 @@ public class frmMain {
 	
 	JTabbedPane tabbedPane;
 	JFileChooser fc;
-	String version="2.0";
+	String version="2.0.1";
 	
 	//Sample frame input
 	int indexLevel=-1;
@@ -150,7 +150,7 @@ public class frmMain {
 	JLabel lblLevelRows;
 	JComboBox<String> comboLevel;
 	JButton btnImportLevel, btnPasteLevel, btnExportLevel, btnValidateSampleFrame;
-	
+		
 	//Sample frame report
 	JTree treeFrame;
 	JTextPane textPaneReport;
@@ -288,7 +288,7 @@ public class frmMain {
 		textArea.setEditable(false);
 		scrollPane.setViewportView(textArea);
 		
-		textArea.setText("EPIC Sampler v2.0\n");
+		textArea.setText("EPIC Sampler v"+version+"\n");
 		textArea.append("Copyright © 2018-2019 Center for Health Decision Science, Harvard T.H. Chan School of Public Health\n\n");
 		textArea.append("This is free software and comes with ABSOLUTELY NO WARRANTY.\n");
 		textArea.append("See Help -> About for distribution details.");
@@ -301,8 +301,9 @@ public class frmMain {
 		JPanel panelSampleFrame = new JPanel();
 				
 		JLabel lblInputs=new JLabel("Sample Frame Inputs");
-		Icon icon=new ImageIcon(frmMain.class.getResource("/images/input.png"));;
-		lblInputs.setIcon(icon);
+		//Icon icon=new ImageIcon(frmMain.class.getResource("/images/input.png"));;
+		//lblInputs.setIcon(icon);
+		lblInputs.setIcon(new ScaledIcon("/images/input",16,16,true));
 		lblInputs.setIconTextGap(5);
 		lblInputs.setHorizontalTextPosition(SwingConstants.RIGHT);
 		
@@ -329,7 +330,7 @@ public class frmMain {
 		toolBar.add(lblNewLabel);
 		
 		JLabel lblLevel = new JLabel("Level:  ");
-		lblLevel.setIcon(new ImageIcon(frmMain.class.getResource("/images/levels.png")));
+		lblLevel.setIcon(new ScaledIcon("/images/levels",16,16,true));
 		toolBar.add(lblLevel);
 		
 		comboLevel = new JComboBox<String>();
@@ -401,7 +402,8 @@ public class frmMain {
 				}
 			}
 		});
-		btnImportLevel.setIcon(new ImageIcon(frmMain.class.getResource("/images/import.png")));
+		btnImportLevel.setIcon(new ScaledIcon("/images/import",16,16,true));
+		btnImportLevel.setDisabledIcon(new ScaledIcon("/images/import",16,16,false));
 		btnImportLevel.setEnabled(false);
 		toolBar.add(btnImportLevel);
 		
@@ -421,7 +423,8 @@ public class frmMain {
 						modelLevel.setRowCount(rows.length-1);
 						for(int r=1; r<numRows; r++){
 							String curRow[]=rows[r].split("\t");
-							for(int c=0; c<numCols; c++){
+							int curNumCols=Math.min(curRow.length, numCols); //check for blanks
+							for(int c=0; c<curNumCols; c++){
 								modelLevel.setValueAt(curRow[c], r-1, c);
 							}
 						}
@@ -437,7 +440,8 @@ public class frmMain {
 				}
 			}
 		});
-		btnPasteLevel.setIcon(new ImageIcon(frmMain.class.getResource("/images/paste_16.png")));
+		btnPasteLevel.setIcon(new ScaledIcon("/images/paste",16,16,true));
+		btnPasteLevel.setDisabledIcon(new ScaledIcon("/images/paste",16,16,false));
 		btnPasteLevel.setEnabled(false);
 		toolBar.add(btnPasteLevel);
 		
@@ -492,7 +496,8 @@ public class frmMain {
 				}
 			}
 		});
-		btnExportLevel.setIcon(new ImageIcon(frmMain.class.getResource("/images/export.png")));
+		btnExportLevel.setIcon(new ScaledIcon("/images/export",16,16,true));
+		btnExportLevel.setDisabledIcon(new ScaledIcon("/images/export",16,16,false));
 		btnExportLevel.setEnabled(false);
 		toolBar.add(btnExportLevel);
 		
@@ -501,7 +506,6 @@ public class frmMain {
 		toolBar.add(separator_3);
 		
 		btnValidateSampleFrame = new JButton("Validate Sample Frame");
-		btnValidateSampleFrame.setIcon(new ImageIcon(frmMain.class.getResource("/images/validate.png")));
 		btnValidateSampleFrame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				frmMain.setCursor(new Cursor(Cursor.WAIT_CURSOR));
@@ -515,6 +519,8 @@ public class frmMain {
 				frmMain.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 			}
 		});
+		btnValidateSampleFrame.setIcon(new ScaledIcon("/images/validate",16,16,true));
+		btnValidateSampleFrame.setDisabledIcon(new ScaledIcon("/images/validate",16,16,false));
 		btnValidateSampleFrame.setEnabled(false);
 		toolBar.add(btnValidateSampleFrame);
 				
@@ -548,8 +554,9 @@ public class frmMain {
 				});
 		
 		JLabel lblReport=new JLabel("Sample Frame Report");
-		Icon iconReport=new ImageIcon(frmMain.class.getResource("/images/report.png"));;
-		lblReport.setIcon(iconReport);
+		//Icon iconReport=new ImageIcon(frmMain.class.getResource("/images/report.png"));;
+		//lblReport.setIcon(iconReport);
+		lblReport.setIcon(new ScaledIcon("/images/report",16,16,true));
 		lblReport.setIconTextGap(5);
 		lblReport.setHorizontalTextPosition(SwingConstants.RIGHT);
 		
@@ -598,7 +605,8 @@ public class frmMain {
 				clip.setContents(new HtmlSelection(textPaneReport.getText()), null);
 			}
 		});
-		btnCopyReport.setIcon(new ImageIcon(frmMain.class.getResource("/images/copy_16.png")));
+		//btnCopyReport.setIcon(new ImageIcon(frmMain.class.getResource("/images/copy_16.png")));
+		btnCopyReport.setIcon(new ScaledIcon("/images/copy",16,16,true));
 		toolBar_1.add(btnCopyReport);
 		
 		JButton btnPrint = new JButton("Print");
@@ -619,7 +627,8 @@ public class frmMain {
 				
 			}
 		});
-		btnPrint.setIcon(new ImageIcon(frmMain.class.getResource("/images/print.png")));
+		//btnPrint.setIcon(new ImageIcon(frmMain.class.getResource("/images/print.png")));
+		btnPrint.setIcon(new ScaledIcon("/images/print",16,16,true));
 		toolBar_1.add(btnPrint);
 		
 		JScrollPane scrollPane_2 = new JScrollPane();
@@ -636,8 +645,9 @@ public class frmMain {
 		
 		
 		JLabel lblSearch=new JLabel("Sample Design Search");
-		Icon iconSearch=new ImageIcon(frmMain.class.getResource("/images/search.png"));;
-		lblSearch.setIcon(iconSearch);
+		//Icon iconSearch=new ImageIcon(frmMain.class.getResource("/images/search.png"));;
+		//lblSearch.setIcon(iconSearch);
+		lblSearch.setIcon(new ScaledIcon("/images/search",16,16,true));
 		lblSearch.setIconTextGap(5);
 		lblSearch.setHorizontalTextPosition(SwingConstants.RIGHT);
 				
@@ -1002,8 +1012,9 @@ public class frmMain {
 		
 		
 		JLabel lblSearchResults=new JLabel("Search Results");
-		Icon iconSearchResults=new ImageIcon(frmMain.class.getResource("/images/searchResults.png"));;
-		lblSearchResults.setIcon(iconSearchResults);
+		//Icon iconSearchResults=new ImageIcon(frmMain.class.getResource("/images/searchResults.png"));
+		//lblSearchResults.setIcon(iconSearchResults);
+		lblSearchResults.setIcon(new ScaledIcon("/images/searchResults",16,16,true));
 		lblSearchResults.setIconTextGap(5);
 		lblSearchResults.setHorizontalTextPosition(SwingConstants.RIGHT);
 		
@@ -1096,7 +1107,8 @@ public class frmMain {
 				
 			}
 		});
-		btnCopy.setIcon(new ImageIcon(frmMain.class.getResource("/images/copy_16.png")));
+		//btnCopy.setIcon(new ImageIcon(frmMain.class.getResource("/images/copy_16.png")));
+		btnCopy.setIcon(new ScaledIcon("/images/copy",16,16,true));
 		toolBar_2.add(btnCopy);
 		
 		JButton btnExport = new JButton("Export");
@@ -1150,7 +1162,7 @@ public class frmMain {
 				}
 			}
 		});
-		btnExport.setIcon(new ImageIcon(frmMain.class.getResource("/images/export.png")));
+		btnExport.setIcon(new ScaledIcon("/images/export",16,16,true));
 		toolBar_2.add(btnExport);
 		
 		JSeparator separator_5 = new JSeparator();
@@ -1186,7 +1198,7 @@ public class frmMain {
 				}
 			}
 		});
-		btnSaveResults.setIcon(new ImageIcon(frmMain.class.getResource("/images/save.png")));
+		btnSaveResults.setIcon(new ScaledIcon("/images/save",16,16,true));
 		toolBar_2.add(btnSaveResults);
 		
 		JButton btnLoad = new JButton("Load");
@@ -1227,7 +1239,7 @@ public class frmMain {
 				}
 			}
 		});
-		btnLoad.setIcon(new ImageIcon(frmMain.class.getResource("/images/load.png")));
+		btnLoad.setIcon(new ScaledIcon("/images/load",16,16,true));
 		toolBar_2.add(btnLoad);
 		
 		JSeparator separator_6 = new JSeparator();
@@ -1367,7 +1379,7 @@ public class frmMain {
 		gbc_btnUpdate.gridy = 0;
 		panelAllDesignsChart.add(btnUpdate, gbc_btnUpdate);
 				
-		ChartPanel panelChartAll = new ChartPanel(chartScatter);
+		ChartPanel panelChartAll = new ChartPanel(chartScatter,false);
 		panelChartAll.addChartMouseListener(new ChartMouseListener() {
 			public void chartMouseClicked(ChartMouseEvent event) {
 				if(event.getTrigger().getButton()==MouseEvent.BUTTON1 && event.getTrigger().getClickCount()==1){
@@ -1430,7 +1442,7 @@ public class frmMain {
 		chartResults = ChartFactory.createScatterPlot(null, "Total Outcome", "Density", chartDataResults, PlotOrientation.VERTICAL, false, false, false);
 		chartResults.getXYPlot().setBackgroundPaint(new Color(1,1,1,1));
 		
-		ChartPanel panelChart = new ChartPanel(chartResults);
+		ChartPanel panelChart = new ChartPanel(chartResults,false);
 		splitPane_2.setRightComponent(panelChart);
 		
 		JPanel panelCurDesign = new JPanel();
