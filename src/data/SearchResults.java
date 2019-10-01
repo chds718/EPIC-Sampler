@@ -80,6 +80,9 @@ public class SearchResults{
 					strataNames[i][s]=curLevel.strata.get(s);
 				}
 			}
+			else {
+				strataNames[i]=new String[] {"[Overall]"}; //placeholder
+			}
 			for(int r=0; r<curLevel.numRows; r++){
 				outcomeTotals[i]+=Double.parseDouble(curLevel.data[r][curLevel.outcomeCol].replaceAll(",", ""));
 			}

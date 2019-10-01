@@ -103,10 +103,8 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
-import javax.swing.ImageIcon;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import java.awt.Font;
@@ -140,7 +138,7 @@ public class frmMain {
 	
 	JTabbedPane tabbedPane;
 	JFileChooser fc;
-	String version="2.0.1";
+	String version="2.0.2";
 	
 	//Sample frame input
 	int indexLevel=-1;
@@ -1406,7 +1404,9 @@ public class frmMain {
 					}
 					
 					int select=tableSearchResults.convertRowIndexToView(minIndex);
-					tableSearchResults.setRowSelectionInterval(select, select);
+					tableSearchResults.setRowSelectionInterval(select, select); //select row
+					tableSearchResults.scrollRectToVisible(tableSearchResults.getCellRect(select,0, true)); //scroll to row
+										
 				}
 			}
 			public void chartMouseMoved(ChartMouseEvent event) {
